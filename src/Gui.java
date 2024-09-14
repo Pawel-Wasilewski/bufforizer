@@ -49,6 +49,19 @@ public class Gui extends JFrame {
         JButton startformatting_gui = new JButton("Zacznij Formatować");
 
         /*
+            STYLE CHANGES TO COMPONENTS
+        */
+
+        fileinsert_gui.setSize(800,200);
+
+        /*
+            ADDING COMPONENTS TO WINDOW
+        */
+
+        gui.add(fileinsert_gui, BorderLayout.SOUTH);
+
+
+        /*
             EVENT FUNCTIONALITY
          */
 
@@ -61,18 +74,24 @@ public class Gui extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Action takes place in FileInserter_Func.java
                 insertfiles.insertfiles();
+                // gui.add(selectedimages_gui, BorderLayout.NORTH);
             }
         });
 
             // Start Button
 
-        StartAction_Func startformatting = new StartAction_Func(files_local)
+        StartAction_Func startformatting = new StartAction_Func(files_local);
 
         startformatting_gui.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                // Action takies place
+                startformatting.startformatting();
             }
         });
+    }
+
+    public void setSelectedimages_gui(JPanel selectedimages_gui) {
+        this.selectedimages_gui = selectedimages_gui;
     }
 }

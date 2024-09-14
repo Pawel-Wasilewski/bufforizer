@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -27,27 +28,22 @@ public class FileInserter_Func {
 
         int result = fileinserter.showOpenDialog(null);
 
+        if (selectedimages_gui != null) {
+
+        }
+
         if (result == JFileChooser.APPROVE_OPTION) {
 
             // Getting Access to files AKA. Copy PATH
 
             File[] selectedfiles = fileinserter.getSelectedFiles();
-            selectedimages_gui.removeAll();
 
             for (File file: selectedfiles) {
 
-                String filename = file.getName();
+                files_local.add(file.getAbsolutePath());
+                // selectedimages_gui.add(new JLabel(valueOf(file)));
 
-                try (FileWriter writer = new FileWriter(filename)){
-
-                    files_local.add(file.getAbsolutePath());
-                    selectedimages_gui.add(new JLabel(valueOf(file)));
-
-                } catch (IOException ex) {
-
-                    throw new RuntimeException(ex);
-
-                }
+                System.out.println(files_local);
             }
         }
     }
