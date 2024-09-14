@@ -2,13 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.Writer;
+import java.util.ArrayList;
 
 public class Gui extends JFrame {
-    JFrame gui;
-    JPanel selectedimages_gui;
+
+    private JPanel selectedimages_gui;
+    private ArrayList<String> files_local = new ArrayList<>();
+
     Gui() {
 
         /*
@@ -17,7 +17,8 @@ public class Gui extends JFrame {
             - blocking a fullscreen
          */
 
-        gui = new JFrame("Bufforizer InDev Version");
+        JFrame gui = new JFrame("Bufforizer InDev Version");
+
         gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gui.setSize(800,500);
         gui.setLocationRelativeTo(null);
@@ -51,34 +52,27 @@ public class Gui extends JFrame {
             EVENT FUNCTIONALITY
          */
 
+        FileInserter_Func insertfiles = new FileInserter_Func(selectedimages_gui, files_local);
+
             // File inserter
 
         fileinsert_gui.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFileChooser fileinserter = new JFileChooser();
+                // Action takes place in FileInserter_Func.java
+                insertfiles.insertfiles();
+            }
+        });
 
-                // Adding multi-filing option
+            // Start Button
 
-                fileinserter.setMultiSelectionEnabled(true);
+        StartAction_Func startformatting = new StartAction_Func(files_local)
 
-                int result = fileinserter.showOpenDialog(null);
+        startformatting_gui.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-                if (result == JFileChooser.APPROVE_OPTION) {
-                    File[] selectedfiles = fileinserter.getSelectedFiles();
-                    selectedimages_gui.removeAll();
-
-                    try (FileWriter writer = new FileWriter("")){
-
-                    }
-                    for (File file: selectedfiles) {
-                    }
-                }
             }
         });
     }
-
-
-
-
 }
