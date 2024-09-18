@@ -11,7 +11,7 @@ public class FileInserter_Func {
     private JPanel selectedimages_gui;
     private ArrayList<String> files_local;
 
-    // Refering to Gui.java elements
+    // Refering to Gui_Win.java elements
 
     public FileInserter_Func(JPanel selectedimages_gui, ArrayList<String> files_local) {
         this.selectedimages_gui = selectedimages_gui;
@@ -43,7 +43,7 @@ public class FileInserter_Func {
                 files_local.add(file.getAbsolutePath());
                 // selectedimages_gui.add(new JLabel(valueOf(file)));
 
-                System.out.println(files_local);
+
             }
         }
     }

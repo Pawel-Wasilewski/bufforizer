@@ -4,12 +4,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class Gui extends JFrame {
+public class Gui_Win extends JFrame {
 
+    // Key transformating elements beetween classes
     private JPanel selectedimages_gui;
     private ArrayList<String> files_local = new ArrayList<>();
 
-    Gui() {
+    // Width of photos desired to bufforize
+
+    private int set_width;
+    private int set_height;
+
+    Gui_Win() {
 
         /*
             SETTINGS OF A WINDOW
@@ -52,7 +58,7 @@ public class Gui extends JFrame {
             STYLE CHANGES TO COMPONENTS
         */
 
-        fileinsert_gui.setSize(800,200);
+        fileinsert_gui.setSize(450,200);
 
         /*
             ADDING COMPONENTS TO WINDOW
@@ -73,19 +79,23 @@ public class Gui extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Action takes place in FileInserter_Func.java
-                insertfiles.insertfiles();
+
                 // gui.add(selectedimages_gui, BorderLayout.NORTH);
+                insertfiles.insertfiles();
+                System.out.println(files_local);
+
             }
         });
 
             // Start Button
 
-        StartAction_Func startformatting = new StartAction_Func(files_local);
+        StartAction_Func startformatting = new StartAction_Func(files_local, set_width, set_height);
+        SetWidth_Win setwidth = new SetWidth_Win();
 
         startformatting_gui.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Action takies place
+                // Action takies place in SetWidth.java
                 startformatting.startformatting();
             }
         });
